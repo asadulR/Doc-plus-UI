@@ -4,7 +4,7 @@ import CustomLink from '../../Shared/CustomLink/CustomLink';
 
 const Header = () => {
     return (
-        <section className=' shadow sticky top-0'>
+        <section className=' shadow ' style={{position:"sticky", top:"0"}}>
             <div className='container mx-auto'>
                 <div className="navbar bg-base-100">
                     <div className="navbar-start">
