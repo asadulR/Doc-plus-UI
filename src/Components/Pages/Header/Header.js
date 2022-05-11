@@ -4,9 +4,9 @@ import CustomLink from '../../Shared/CustomLink/CustomLink';
 
 const Header = () => {
     return (
-        <section className=' shadow ' style={{position:"sticky", top:"0"}}>
+        <section className=' shadow bg-base-100' style={{position:"sticky", top:"0"}}>
             <div className='container mx-auto'>
-                <div className="navbar bg-base-100">
+                <div className="navbar">
                     <div className="navbar-start">
                         <div className="dropdown">
                             <label tabindex="0" className="btn btn-ghost lg:hidden">
@@ -18,10 +18,9 @@ const Header = () => {
                                 <li><CustomLink to='/review' >Review</CustomLink></li>
                                 <li><CustomLink to='/contact' >Contact </CustomLink></li>
                                 <li><CustomLink to='/about' >About</CustomLink></li>
-
                             </ul>
                         </div>
-                        <Link to='/' className="btn btn-ghost text-primary normal-case font-bold text-2xl">Doc +</Link>
+                        <Link to='/' className=" text-primary normal-case font-bold text-2xl">Doc +</Link>
                     </div>
                     <div className="navbar-center hidden lg:flex">
                         <ul className="menu menu-horizontal p-0">
