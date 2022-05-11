@@ -2,7 +2,7 @@ import React from 'react';
 import img from '../../../assets/images/appointment.png'
 const ContactHome = () => {
     return (
-        <section className='my-20' style={{
+        <section className='my-20 container mx-auto' style={{
             background:`url(${img})`
         }}>
             <div className=' py-20 px-3'>
