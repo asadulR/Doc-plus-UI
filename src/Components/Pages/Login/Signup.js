@@ -2,28 +2,33 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 
 import auth from '../../Shared/Auth/firebase.init';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../../Shared/Loading/Loading';
 import { Link } from 'react-router-dom';
-const Login = () => {
+
+
+
+
+
+const Signup = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
     const [
-        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
         user,
         loading,
         error,
-    ] = useSignInWithEmailAndPassword(auth);
+      ] = useCreateUserWithEmailAndPassword(auth);
     const onSubmit = data => {
         console.log(data)
-        signInWithEmailAndPassword(data.email, data.password)
+        createUserWithEmailAndPassword(data.email, data.password)
     };
     let signInErrorMessage;
     if (loading || gloading) {
-        return <Loading/>
+        return <Loading />
     }
 
-    if(error || gerror){
+    if (error || gerror) {
         signInErrorMessage = <p className='text-red-700'><small>{error?.message || gerror?.message}</small></p>
     }
 
@@ -36,9 +41,26 @@ const Login = () => {
             <div className='h-screen justify-center items-center'>
                 <div className="card max-w-lg mx-auto shadow-xl">
                     <div className="card-body">
-                        <h2 className="text-center text-secondary text-xl font-bold">Login</h2>
+                        <h2 className="text-center text-secondary text-xl font-bold">Sign Up</h2>
                         <form onSubmit={handleSubmit(onSubmit)}>
 
+                            <div className="form-control w-full">
+                                <label className="label">
+                                    <span className="label-text">Name</span>
+                                </label>
+                                <input type="text" placeholder="Enter your name" className="input input-bordered w-full input-primary "
+                                    {...register("name", {
+                                        required: {
+                                            value: true,
+                                            message: "Name is Required"
+                                        }
+                                    })}
+
+                                />
+                                <label className="label">
+                                    {errors.name?.type === 'required' && <span className="label-text-alt text-red-700">{errors.name.message}</span>}
+                                </label>
+                            </div>
                             <div className="form-control w-full">
                                 <label className="label">
                                     <span className="label-text">Email</span>
@@ -85,17 +107,17 @@ const Login = () => {
 
                                 </label>
                             </div>
-                            <input className='btn w-full ' type="submit" value='Login' />
+                            <input className='btn w-full ' type="submit" value='Sign up' />
                         </form>
-                        <p className='text-center text-accent'><small>New to Doc+? <Link to='/signup' className='text-secondary text-semibold'>Create new account</Link></small></p>
+                        <p className='text-center text-accent'><small>Already have an account? <Link to='/login' className='text-secondary text-semibold'>Please Login</Link></small></p>
                         {signInErrorMessage}
                         <div className="divider text-xs">OR</div>
                         <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-primary hover:text-white font-bold">Continue with Google</button>
                     </div>
-                </div>      
+                </div>
             </div>
         </section>
     );
 };
 
-export default Login;
+export default Signup;

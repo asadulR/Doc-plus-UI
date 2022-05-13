@@ -5,6 +5,7 @@ import Appointment from './Components/Pages/Appointment/Appointment';
 import Header from './Components/Pages/Header/Header';
 import Home from './Components/Pages/Home/Home';
 import Login from './Components/Pages/Login/Login';
+import Signup from './Components/Pages/Login/Signup';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/appointment' element={<Appointment/>}></Route>
         <Route path='/about' element={<About/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
+        <Route path='/signup' element={<Signup/>}></Route>
       </Routes>
     </>
   );
