@@ -1,9 +1,14 @@
 import React from 'react';
 import { BsClock, BsFillGeoAltFill, BsTelephonePlus } from "react-icons/bs";
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 const Info = () => {
     return (
         <section className='container mx-auto my-16'>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-6 text-white px-2'>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-6 text-white px-2' data-aos="fade-up"
+                    data-aos-duration="1500">
                 <div className='bg-gradient-to-r from-secondary to-primary px-5 py-8 text-center md:text-left rounded-2xl transition ease-in-out  hover:-translate-y-2 duration-700'>
                     <div className="md:flex gap-4 md:items-center">
                         <div className='mb-4'><BsClock className='text-8xl md:text-6xl font-bold mx-auto' /></div>

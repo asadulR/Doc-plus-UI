@@ -6,17 +6,22 @@ import Header from './Components/Pages/Header/Header';
 import Home from './Components/Pages/Home/Home';
 import Login from './Components/Pages/Login/Login';
 import Signup from './Components/Pages/Login/Signup';
+import RequireAuth from './Components/Shared/Auth/RequireAuth';
 
 function App() {
   return (
     <>
-      <Header/>
+      <Header />
       <Routes>
-        <Route path='/' element={<Home/>}></Route>
-        <Route path='/appointment' element={<Appointment/>}></Route>
-        <Route path='/about' element={<About/>}></Route>
-        <Route path='/login' element={<Login/>}></Route>
-        <Route path='/signup' element={<Signup/>}></Route>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/appointment' element={
+          <RequireAuth>
+            <Appointment />
+          </RequireAuth>
+        }></Route>
+        <Route path='/about' element={<About />}></Route>
+        <Route path='/login' element={<Login />}></Route>
+        <Route path='/signup' element={<Signup />}></Route>
       </Routes>
     </>
   );

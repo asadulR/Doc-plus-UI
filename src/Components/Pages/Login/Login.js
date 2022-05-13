@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 
 import auth from '../../Shared/Auth/firebase.init';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../../Shared/Loading/Loading';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
@@ -19,22 +23,30 @@ const Login = () => {
         signInWithEmailAndPassword(data.email, data.password)
     };
     let signInErrorMessage;
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || '/';
+
+    useEffect(() => {
+        if (user || guser) {
+            // console.log(user || guser);
+            navigate(from, { replace: true });
+        }
+    }, [user, guser, from, navigate])
     if (loading || gloading) {
-        return <Loading/>
+        return <Loading />
     }
 
-    if(error || gerror){
+    if (error || gerror) {
         signInErrorMessage = <p className='text-red-700'><small>{error?.message || gerror?.message}</small></p>
     }
 
-    if (user || guser) {
-        console.log(user || guser);
 
-    }
     return (
         <section className='container mx-auto px-3 my-10'>
             <div className='h-screen justify-center items-center'>
-                <div className="card max-w-lg mx-auto shadow-xl">
+                <div className="card max-w-lg mx-auto shadow-xl" data-aos="fade-up"
+                    data-aos-duration="1500">
                     <div className="card-body">
                         <h2 className="text-center text-secondary text-xl font-bold">Login</h2>
                         <form onSubmit={handleSubmit(onSubmit)}>
@@ -92,7 +104,7 @@ const Login = () => {
                         <div className="divider text-xs">OR</div>
                         <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-primary hover:text-white font-bold">Continue with Google</button>
                     </div>
-                </div>      
+                </div>
             </div>
         </section>
     );

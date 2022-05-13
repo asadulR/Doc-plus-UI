@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 
 import auth from '../../Shared/Auth/firebase.init';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import Loading from '../../Shared/Loading/Loading';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 
 const Signup = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -18,28 +20,35 @@ const Signup = () => {
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth);
-    const onSubmit = data => {
-        console.log(data)
-        createUserWithEmailAndPassword(data.email, data.password)
+    ] = useCreateUserWithEmailAndPassword(auth);
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const onSubmit = async data => {
+        // console.log(data)
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName: data?.name });
     };
+    const navigate = useNavigate();
     let signInErrorMessage;
-    if (loading || gloading) {
+
+    useEffect(() => {
+        if (user || guser) {
+            navigate('/appointment');
+        };
+    }, [user, guser, navigate]);
+    if (loading || gloading || updating) {
         return <Loading />
     }
 
-    if (error || gerror) {
-        signInErrorMessage = <p className='text-red-700'><small>{error?.message || gerror?.message}</small></p>
+    if (error || gerror || updateError) {
+        signInErrorMessage = <p className='text-red-700'><small>{error?.message || gerror?.message || updateError?.message}</small></p>
     }
 
-    if (user || guser) {
-        console.log(user || guser);
 
-    }
     return (
         <section className='container mx-auto px-3 my-10'>
             <div className='h-screen justify-center items-center'>
-                <div className="card max-w-lg mx-auto shadow-xl">
+                <div className="card max-w-lg mx-auto shadow-xl" data-aos="fade-up"
+                    data-aos-duration="1500">
                     <div className="card-body">
                         <h2 className="text-center text-secondary text-xl font-bold">Sign Up</h2>
                         <form onSubmit={handleSubmit(onSubmit)}>

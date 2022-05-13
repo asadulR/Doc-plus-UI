@@ -1,11 +1,16 @@
 import React from 'react';
 import img from '../../../assets/images/appointment.png'
+
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 const ContactHome = () => {
     return (
         <section className='my-20 container mx-auto' style={{
             background:`url(${img})`
         }}>
-            <div className=' py-20 px-3'>
+            <div className=' py-20 px-3' data-aos="zoom-in" data-aos-duration="3000">
                 <h5 className='text-center text-lg font-semibold text-primary'>Contact Us</h5>
                 <h2 className='text-center font-semibold text-white mb-12 text-2xl'>Stay connected with us</h2>
                 <form className=' max-w-xl mx-auto'>

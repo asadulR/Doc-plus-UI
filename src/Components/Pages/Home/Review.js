@@ -1,9 +1,13 @@
 import React from 'react';
 
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 const Review = ({ singleReview }) => {
     const { name, img, review, city } = singleReview;
     return (
-        <div>
+        <div data-aos="zoom-in" data-aos-duration="3000">
             <div className="card max-w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
                     <p className='mb-5'>{review}</p>
