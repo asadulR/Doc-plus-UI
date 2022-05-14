@@ -4,7 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import toast, { Toaster } from 'react-hot-toast';
 import auth from '../../Shared/Auth/firebase.init';
 
-const BookingModal = ({ treatment, selected, setTreatment }) => {
+const BookingModal = ({ treatment, selected, setTreatment, refetch }) => {
     const { name, slots, _id } = treatment;
     const [user] = useAuthState(auth);
     const handleBooking = event => {
@@ -43,6 +43,7 @@ const BookingModal = ({ treatment, selected, setTreatment }) => {
                 toast.error('Booking faild!');
                 alert(`You already have an appointment on ${data.booking?.date} at ${timeSlot}`)
             }
+            refetch();
             setTreatment(null);
         })
         // to close the modal 
