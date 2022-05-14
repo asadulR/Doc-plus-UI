@@ -10,7 +10,7 @@ const Header = () => {
 
     const logout = () => {
         signOut(auth);
-      };
+    };
     return (
         <section className=' shadow bg-base-100'>
             <div className='container mx-auto'>
@@ -26,6 +26,9 @@ const Header = () => {
                                 <CustomLink to='/review' className='btn btn-ghost normal-case'>Review</CustomLink>
                                 <CustomLink to='/contact' className='btn btn-ghost normal-case'>Contact </CustomLink>
                                 <CustomLink to='/about' className='btn btn-ghost normal-case'>About</CustomLink>
+                                {
+                                    user && <CustomLink to='/dashboard' className='btn btn-ghost normal-case'>Dashboard</CustomLink>
+                                }
                             </ul>
                         </div>
                         <Link to='/' className=" text-primary normal-case font-bold text-2xl">Doc +</Link>
@@ -37,13 +40,18 @@ const Header = () => {
                             <CustomLink to='/review' className='btn btn-ghost normal-case'>Review</CustomLink>
                             <CustomLink to='/contact' className='btn btn-ghost normal-case'>Contact </CustomLink>
                             <CustomLink to='/about' className='btn btn-ghost normal-case'>About</CustomLink>
+                            {
+                                user && <CustomLink to='/dashboard' className='btn btn-ghost normal-case'>Dashboard</CustomLink>
+                            }
                         </ul>
                     </div>
                     <div className="navbar-end">
+
                         {
                             user ?
                                 <button onClick={logout} className='btn btn-ghost normal-case'>Sign-out</button> :
-                                <CustomLink to='/login' className='btn btn-ghost normal-case'>Login</CustomLink>}
+                                <CustomLink to='/login' className='btn btn-ghost normal-case'>Login</CustomLink>
+                        }
                     </div>
                 </div>
             </div>

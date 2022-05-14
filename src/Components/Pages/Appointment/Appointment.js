@@ -6,7 +6,7 @@ import AvailableAppointment from './AvailableAppointment';
 const Appointment = () => {
     const [selected, setSelected] = useState(new Date());
     return (
-        <main className='container mx-auto px-5'>
+        <main className=''>
             <AppointmentBanner selected={selected} setSelected={setSelected}/>
             <AvailableAppointment selected={selected}/>
             <Footer/>
