@@ -16,17 +16,17 @@ const Services = () => {
                 <h2 className='text-center text-3xl font-semibold'>Services We Provide</h2>
 
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-4 my-16 px-2'>
-                    <div className=' text-center p-6 shadow-lg rounded-lg' data-aos="flip-right" data-aos-duration="1500">
+                    <div className=' text-center p-6 shadow-lg rounded-lg' data-aos="flip-right" data-aos-duration="2000">
                         <img className=' w-24 mb-6 mx-auto' src={fluoridd} alt="" />
                         <h4 className='text-accent font-bold mb-4 transition hover:text-secondary'>Fluoride Treatment</h4>
                         <p>Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the</p>
                     </div>
-                    <div className=' text-center p-6 shadow-lg rounded-lg'data-aos="flip-up" data-aos-duration="1500">
+                    <div className=' text-center p-6 shadow-lg rounded-lg'data-aos="flip-up" data-aos-duration="2000">
                         <img className='w-24 mb-6 mx-auto' src={cavity} alt="" />
                         <h4 className='text-accent font-bold mb-4 transition hover:text-secondary'>Cavity Filling</h4>
                         <p>Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the</p>
                     </div>
-                    <div className=' text-center p-6 shadow-lg rounded-lg' data-aos="flip-left" data-aos-duration="1500">
+                    <div className=' text-center p-6 shadow-lg rounded-lg' data-aos="flip-left" data-aos-duration="2000">
                         <img className='w-24 mb-6 mx-auto' src={whitening} alt="" />
                         <h4 className='text-accent font-bold mb-4 transition hover:text-secondary'>Teeth Whitening</h4>
                         <p>Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the</p>

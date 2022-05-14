@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import toast, { Toaster } from 'react-hot-toast';
 import auth from '../../Shared/Auth/firebase.init';
 
 const BookingModal = ({ treatment, selected, setTreatment }) => {
@@ -11,12 +12,41 @@ const BookingModal = ({ treatment, selected, setTreatment }) => {
 
         const date = event.target.date.value;
         const timeSlot = event.target.timeSlot.value;
-        const name = event.target.name.value;
+        const patient = event.target.patient.value;
         const number = event.target.number.value;
         const email = event.target.email.value;
         // console.log(date, timeSlot, _id, name, number, email);
+        const booking = {
+            treatmentId: _id,
+            treatment: name,
+            date: date,
+            timeSlot: timeSlot,
+            patientName: patient,
+            patientEmail: email,
+            phone: number
+        }
+
+        fetch('http://localhost:5000/booking',{
+            method: "POST",
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        })
+        .then(res => res.json())
+        .then(data => {
+
+            if(data.success){
+                toast.success('Booking Successful!')
+            }
+            else{
+                toast.error('Booking faild!');
+                alert(`You already have an appointment on ${data.booking?.date} at ${timeSlot}`)
+            }
+            setTreatment(null);
+        })
         // to close the modal 
-        setTreatment(null);
+        
     }
     return (
         <div>
@@ -36,13 +66,15 @@ const BookingModal = ({ treatment, selected, setTreatment }) => {
                                     </option>)
                             }
                         </select>
-                        <input type="text" name='name' required placeholder="Full Name" className="input input-bordered input-primary w-full max-w-sm " />
+                        <input type="text" name='patient' required placeholder="Full Name" className="input input-bordered input-primary w-full max-w-sm " />
                         <input type="number" name='number' required placeholder="Phone Number" className="input input-bordered input-primary w-full max-w-sm " />
                         <input type="email" readOnly name='email' disabled value={user?.email} className="input input-bordered input-primary w-full max-w-sm " />
                         <input type="Submit" defaultValue='SUBMIT' className=" btn btn-secondary w-full max-w-sm text-white text-lg bg-gradient-to-r from-secondary to-primary" />
                     </form>
+                    <Toaster/>
                 </div>
             </div>
+            
         </div>
     );
 };
