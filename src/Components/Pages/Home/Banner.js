@@ -7,7 +7,7 @@ import 'aos/dist/aos.css';
 AOS.init();
 const Banner = () => {
     return (
-        <div className=' container mx-auto banner-section-home px-3'>
+        <div className=' container mx-auto banner-section-home px-3  mt-24 lg:mt-40'>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-12 items-center" data-aos="fade-up"
                     data-aos-duration="1500">
                 <div>

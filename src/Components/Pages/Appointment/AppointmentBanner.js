@@ -12,7 +12,7 @@ const AppointmentBanner = ({ selected, setSelected }) => {
         footer = <p>You picked {format(selected, 'PP')}.</p>;
     }
     return (
-        <div className="hero min-h-screen container mx-auto" style={{
+        <div className="hero min-h-screen container mx-auto mt-20 lg:mt-40" style={{
             background: `url(${bg})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center'

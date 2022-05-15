@@ -12,9 +12,9 @@ const Header = () => {
         signOut(auth);
     };
     return (
-        <section className=' shadow bg-base-100'>
-            <div className='container mx-auto'>
-                <div className="navbar">
+        <section className=' '>
+            <div className=''>
+                <div className="navbar shadow-lg lg:px-20 bg-base-100 fixed top-0 z-50">
                     <div className="navbar-start">
                         <div className="dropdown">
                             <label tabIndex="0" className="btn btn-ghost lg:hidden">
@@ -46,7 +46,6 @@ const Header = () => {
                         </ul>
                     </div>
                     <div className="navbar-end">
-
                         {
                             user ?
                                 <button onClick={logout} className='btn btn-ghost normal-case'>Sign-out</button> :

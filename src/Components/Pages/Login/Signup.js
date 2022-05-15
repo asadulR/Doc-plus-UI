@@ -10,6 +10,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import useToken from '../../../hooks/useToken';
 AOS.init();
 
 const Signup = () => {
@@ -22,10 +23,14 @@ const Signup = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+    const [token] = useToken(user || guser)
+
     const onSubmit = async data => {
         // console.log(data)
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data?.name });
+
     };
     const navigate = useNavigate();
     let signInErrorMessage;
@@ -45,7 +50,7 @@ const Signup = () => {
 
 
     return (
-        <section className='container mx-auto px-3 my-10'>
+        <section className='container mx-auto px-3 mt-24 mb-10'>
             <div className='h-screen justify-center items-center'>
                 <div className="card max-w-lg mx-auto shadow-xl" data-aos="fade-up"
                     data-aos-duration="1500">

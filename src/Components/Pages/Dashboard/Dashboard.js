@@ -1,10 +1,11 @@
 import React from 'react';
+import { Footer } from 'react-day-picker';
 import { Outlet } from 'react-router-dom';
 import CustomLink from '../../Shared/CustomLink/CustomLink';
 
 const Dashboard = () => {
     return (
-        <div className='container mx-auto px-3'>
+        <section className='container mx-auto px-3 mt-16'>
 
             <div class="drawer drawer-mobile ">
                 <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
@@ -21,15 +22,17 @@ const Dashboard = () => {
                 </div>
                 <div class="drawer-side">
                     <label for="my-drawer-2" class="drawer-overlay"></label>
-                    <ul class="menu p-4 overflow-y-auto w-80 bg-violet-100 text-base-content">
+                    <ul class="menu p-4 overflow-y-auto w-60 bg-violet-100 text-base-content">
                         {/* <!-- Sidebar content here --> */}
-                        <CustomLink className="btn btn-ghost btn-sm" to='/dashboard/myreview'>Review</CustomLink>
-                        <CustomLink className="btn btn-ghost btn-sm" to='/dashboard'>Dashboard</CustomLink>
+                        <CustomLink className="btn btn-ghost btn-sm" to='/dashboard'>My Appointments</CustomLink>
+                        <CustomLink className="btn btn-ghost btn-sm" to='/dashboard/myreview'>My Review</CustomLink>
                     </ul>
 
                 </div>
             </div>
-        </div>
+
+            {/* <Footer/> */}
+        </section>
     );
 };
 

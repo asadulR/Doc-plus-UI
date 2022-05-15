@@ -43,7 +43,7 @@ const Login = () => {
 
 
     return (
-        <section className='container mx-auto px-3 my-10'>
+        <section className='container mx-auto px-3 mt-28 mb-10'>
             <div className='h-screen justify-center items-center'>
                 <div className="card max-w-lg mx-auto shadow-xl" data-aos="fade-up"
                     data-aos-duration="1500">
