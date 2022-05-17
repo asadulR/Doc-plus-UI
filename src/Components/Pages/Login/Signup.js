@@ -52,15 +52,15 @@ const Signup = () => {
     return (
         <section className='container mx-auto px-3 mt-24 mb-10'>
             <div className='h-screen justify-center items-center'>
-                <div className="card max-w-lg mx-auto shadow-xl" data-aos="fade-up"
+                <div className="card max-w-lg mx-auto shadow-xl bg-accent" data-aos="fade-up"
                     data-aos-duration="1500">
                     <div className="card-body">
-                        <h2 className="text-center text-secondary text-xl font-bold">Sign Up</h2>
+                        <h2 className="text-center text-secondary text-2xl font-bold">Sign Up</h2>
                         <form onSubmit={handleSubmit(onSubmit)}>
 
                             <div className="form-control w-full">
                                 <label className="label">
-                                    <span className="label-text">Name</span>
+                                    <span className="label-text text-white">Name</span>
                                 </label>
                                 <input type="text" placeholder="Enter your name" className="input input-bordered w-full input-primary "
                                     {...register("name", {
@@ -77,7 +77,7 @@ const Signup = () => {
                             </div>
                             <div className="form-control w-full">
                                 <label className="label">
-                                    <span className="label-text">Email</span>
+                                    <span className="label-text text-white">Email</span>
                                 </label>
                                 <input type="email" placeholder="Enter your email" className="input input-bordered w-full input-primary "
                                     {...register("email", {
@@ -100,7 +100,7 @@ const Signup = () => {
                             </div>
                             <div className="form-control w-full">
                                 <label className="label">
-                                    <span className="label-text">Password</span>
+                                    <span className="label-text text-white">Password</span>
                                 </label>
                                 <input type="password" placeholder="Enter your Password" className="input input-bordered w-full input-primary"
                                     {...register("password", {
@@ -121,11 +121,11 @@ const Signup = () => {
 
                                 </label>
                             </div>
-                            <input className='btn w-full ' type="submit" value='Sign up' />
+                            <input className='btn w-full btn-primary' type="submit" value='Sign up' />
                         </form>
-                        <p className='text-center text-accent'><small>Already have an account? <Link to='/login' className='text-secondary text-semibold'>Please Login</Link></small></p>
+                        <p className='text-center text-white'><small>Already have an account? <Link to='/login' className='text-secondary text-semibold'>Please Login</Link></small></p>
                         {signInErrorMessage}
-                        <div className="divider text-xs">OR</div>
+                        <div className="divider text-xs text-white">OR</div>
                         <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-primary hover:text-white font-bold">Continue with Google</button>
                     </div>
                 </div>

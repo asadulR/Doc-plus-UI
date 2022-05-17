@@ -1,17 +1,22 @@
 import React from 'react';
 import { Footer } from 'react-day-picker';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Outlet } from 'react-router-dom';
+import useAdmin from '../../../hooks/useAdmin';
+import auth from '../../Shared/Auth/firebase.init';
 import CustomLink from '../../Shared/CustomLink/CustomLink';
 
 const Dashboard = () => {
+    const [user] = useAuthState(auth)
+    const [admin] = useAdmin(user)
     return (
         <section className='container mx-auto px-3 mt-16'>
 
-            <div class="drawer drawer-mobile ">
-                <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-                <div class="drawer-content mt-5">
+            <div className="drawer drawer-mobile ">
+                <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+                <div className="drawer-content mt-5">
                     <div className='text-right'>
-                        <label for="my-drawer-2" class="btn btn-ghost drawer-button lg:hidden">
+                        <label htmlFor="my-drawer-2" className="btn btn-ghost drawer-button lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
                     </div>
@@ -20,12 +25,13 @@ const Dashboard = () => {
                     <Outlet />
 
                 </div>
-                <div class="drawer-side">
-                    <label for="my-drawer-2" class="drawer-overlay"></label>
-                    <ul class="menu p-4 overflow-y-auto w-60 bg-violet-100 text-base-content">
+                <div className="drawer-side">
+                    <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+                    <ul className="menu p-4 overflow-y-auto w-60 bg-violet-100 text-base-content">
                         {/* <!-- Sidebar content here --> */}
                         <CustomLink className="btn btn-ghost btn-sm" to='/dashboard'>My Appointments</CustomLink>
                         <CustomLink className="btn btn-ghost btn-sm" to='/dashboard/myreview'>My Review</CustomLink>
+                        {admin && <CustomLink className="btn btn-ghost btn-sm" to='/dashboard/users'>All Users</CustomLink>}
                     </ul>
 
                 </div>

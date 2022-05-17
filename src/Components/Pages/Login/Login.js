@@ -8,6 +8,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import useToken from '../../../hooks/useToken';
 AOS.init();
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -18,6 +19,7 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+    const [token] = useToken(user || guser)
     const onSubmit = data => {
         console.log(data)
         signInWithEmailAndPassword(data.email, data.password)
@@ -28,11 +30,11 @@ const Login = () => {
     let from = location.state?.from?.pathname || '/';
 
     useEffect(() => {
-        if (user || guser) {
+        if (token) {
             // console.log(user || guser);
             navigate(from, { replace: true });
         }
-    }, [user, guser, from, navigate])
+    }, [token, from, navigate])
     if (loading || gloading) {
         return <Loading />
     }
@@ -45,15 +47,15 @@ const Login = () => {
     return (
         <section className='container mx-auto px-3 mt-28 mb-10'>
             <div className='h-screen justify-center items-center'>
-                <div className="card max-w-lg mx-auto shadow-xl" data-aos="fade-up"
+                <div className="card max-w-lg mx-auto shadow-xl bg-accent" data-aos="fade-up"
                     data-aos-duration="1500">
                     <div className="card-body">
-                        <h2 className="text-center text-secondary text-xl font-bold">Login</h2>
+                        <h2 className="text-center text-secondary text-2xl font-bold">Login</h2>
                         <form onSubmit={handleSubmit(onSubmit)}>
 
                             <div className="form-control w-full">
                                 <label className="label">
-                                    <span className="label-text">Email</span>
+                                    <span className="label-text text-white">Email</span>
                                 </label>
                                 <input type="email" placeholder="Enter your email" className="input input-bordered w-full input-primary "
                                     {...register("email", {
@@ -76,7 +78,7 @@ const Login = () => {
                             </div>
                             <div className="form-control w-full">
                                 <label className="label">
-                                    <span className="label-text">Password</span>
+                                    <span className="label-text text-white">Password</span>
                                 </label>
                                 <input type="password" placeholder="Enter your Password" className="input input-bordered w-full input-primary"
                                     {...register("password", {
@@ -97,11 +99,11 @@ const Login = () => {
 
                                 </label>
                             </div>
-                            <input className='btn w-full ' type="submit" value='Login' />
+                            <input className='btn w-full btn-primary' type="submit" value='Login' />
                         </form>
-                        <p className='text-center text-accent'><small>New to Doc+? <Link to='/signup' className='text-secondary text-semibold'>Create new account</Link></small></p>
+                        <p className='text-center text-white'><small>New to Doc+? <Link to='/signup' className='text-secondary text-semibold'>Create new account</Link></small></p>
                         {signInErrorMessage}
-                        <div className="divider text-xs">OR</div>
+                        <div className="divider text-xs text-white">OR</div>
                         <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-primary hover:text-white font-bold">Continue with Google</button>
                     </div>
                 </div>
