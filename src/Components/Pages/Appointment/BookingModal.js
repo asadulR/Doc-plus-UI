@@ -26,7 +26,7 @@ const BookingModal = ({ treatment, selected, setTreatment, refetch }) => {
             phone: number
         }
 
-        fetch('http://localhost:5000/booking',{
+        fetch('https://doc-plus-server.herokuapp.com/booking',{
             method: "POST",
             headers:{
                 'content-type': 'application/json'

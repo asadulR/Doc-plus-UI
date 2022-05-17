@@ -20,7 +20,7 @@ const AvailableAppointment = ({ selected }) => {
 
 
     const { isLoading, error, data: services, refetch } = useQuery(['available', formatedDate], () =>
-    fetch(`http://localhost:5000/available?date=${formatedDate}`).then(res =>
+    fetch(`https://doc-plus-server.herokuapp.com/available?date=${formatedDate}`).then(res =>
        res.json()
      )
    )
