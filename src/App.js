@@ -2,7 +2,9 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import About from './Components/Pages/About/About';
 import Appointment from './Components/Pages/Appointment/Appointment';
+import AddDoctor from './Components/Pages/Dashboard/AddDoctor';
 import Dashboard from './Components/Pages/Dashboard/Dashboard';
+import ManageDoctors from './Components/Pages/Dashboard/ManageDoctors';
 import MyAppointments from './Components/Pages/Dashboard/MyAppointments';
 import MyReview from './Components/Pages/Dashboard/MyReview';
 import Users from './Components/Pages/Dashboard/Users';
@@ -31,6 +33,8 @@ function App() {
           <Route index element={<MyAppointments></MyAppointments>}></Route>
           <Route path='myreview' element={<MyReview/>}></Route>
           <Route path='users' element={<Users/>}></Route>
+          <Route path='addDoctor' element={<AddDoctor/>}></Route>
+          <Route path='manageDoctors' element={<ManageDoctors/>}></Route>
         </Route>
         <Route path='/about' element={<About />}></Route>
         <Route path='/login' element={<Login />}></Route>

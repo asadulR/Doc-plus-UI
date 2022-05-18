@@ -18,7 +18,7 @@
 
 ## Available package
 
-- React Touter
+- React Router
 - AOS Animation
 - Tailwind css
 - daisy UI

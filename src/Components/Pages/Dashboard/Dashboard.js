@@ -1,5 +1,4 @@
 import React from 'react';
-import { Footer } from 'react-day-picker';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Outlet } from 'react-router-dom';
 import useAdmin from '../../../hooks/useAdmin';
@@ -8,7 +7,9 @@ import CustomLink from '../../Shared/CustomLink/CustomLink';
 
 const Dashboard = () => {
     const [user] = useAuthState(auth)
-    const [admin] = useAdmin(user)
+    // const [admin] = useAdmin(user)
+    // console.log(admin)
+    const admin = true;
     return (
         <section className='container mx-auto px-3 mt-16'>
 
@@ -29,9 +30,16 @@ const Dashboard = () => {
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 overflow-y-auto w-60 bg-violet-100 text-base-content">
                         {/* <!-- Sidebar content here --> */}
-                        <CustomLink className="btn btn-ghost btn-sm" to='/dashboard'>My Appointments</CustomLink>
-                        <CustomLink className="btn btn-ghost btn-sm" to='/dashboard/myreview'>My Review</CustomLink>
-                        {admin && <CustomLink className="btn btn-ghost btn-sm" to='/dashboard/users'>All Users</CustomLink>}
+                        <CustomLink className="btn btn-ghost btn-md" to='/dashboard'>My Appointments</CustomLink>
+                        <CustomLink className="btn btn-ghost btn-md" to='/dashboard/myreview'>My Review</CustomLink>
+                        { admin && 
+                        <>
+                            <CustomLink className="btn btn-ghost btn-md" to='/dashboard/users'>All Users</CustomLink>
+                            <CustomLink className="btn btn-ghost btn-md" to='/dashboard/addDoctor'>Add a Doctor</CustomLink>
+                            <CustomLink className="btn btn-ghost btn-md" to='/dashboard/manageDoctors'>Manage Doctors</CustomLink>
+                        </>
+                        }
+
                     </ul>
 
                 </div>
