@@ -99,8 +99,8 @@ const AddDoctor = () => {
                                 </label>
                             </div>
                             <div className="form-control w-full mb-6">
-                                <select {...register("speciality")}
-                                    class="select select-primary w-full">
+                                <select {...register("specialty")}
+                                    className="select select-primary w-full">
                                     <option disabled selected>Teeth Orthodontics</option>
                                     <option>Cosmetic Dentistry</option>
                                     <option>Teeth Cleaning</option>
