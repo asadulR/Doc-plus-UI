@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../Shared/Auth/firebase.init';
 import Loading from '../../Shared/Loading/Loading';
 
@@ -28,7 +28,6 @@ const MyAppointments = () => {
                     return res.json()
                 })
                 .then(data => {
-
                     setAppointments(data)
                     setLoading(false)
                 });
@@ -52,16 +51,19 @@ const MyAppointments = () => {
                                             <th className='text-secondary'>Treatment</th>
                                             <th className='text-secondary'>Date</th>
                                             <th className='text-secondary'>Time</th>
+                                            <th className='text-secondary'>Payment</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {
-                                            appointments.map((a, index) => <tr className="hover">
+                                            appointments.map((a, index) => <tr className="hover" key={index}>
                                                 <td>{index + 1}</td>
                                                 <td>{a.patientName}</td>
                                                 <td>{a.treatment}</td>
                                                 <td>{a.date}</td>
                                                 <td>{a.timeSlot}</td>
+                                                <td>{(a.price && !a.paid) && <Link to={`/dashboard/payment/${a._id}`}> <button className='btn btn-sm btn-success'>Pay</button></Link>}</td>
+                                                <td>{(a.price && a.paid) && <span className='text-success'>Paid</span>}</td>
                                             </tr>)
                                         }
 

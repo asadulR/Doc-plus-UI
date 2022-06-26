@@ -1,5 +1,5 @@
 import React from 'react';
-import img from '../../../assets/images/chair.png'
+import img from '../../../assets/images/chair.jpg'
 import './Home.css'
 
 import AOS from 'aos';

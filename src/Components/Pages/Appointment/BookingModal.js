@@ -5,7 +5,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import auth from '../../Shared/Auth/firebase.init';
 
 const BookingModal = ({ treatment, selected, setTreatment, refetch }) => {
-    const { name, slots, _id } = treatment;
+    const { name, slots, _id, price } = treatment;
     const [user] = useAuthState(auth);
     const handleBooking = event => {
         event.preventDefault()
@@ -22,6 +22,7 @@ const BookingModal = ({ treatment, selected, setTreatment, refetch }) => {
             date: date,
             timeSlot: timeSlot,
             patientName: patient,
+            price: price,
             patientEmail: email,
             phone: number
         }
@@ -37,6 +38,7 @@ const BookingModal = ({ treatment, selected, setTreatment, refetch }) => {
         .then(data => {
 
             if(data.success){
+                alert('Booking Successful!')
                 toast.success('Booking Successful!')
             }
             else{

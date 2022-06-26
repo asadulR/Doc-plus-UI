@@ -8,7 +8,7 @@ const DoctorRow = ({ doctor, refetch }) => {
         const dltConfirmation = window.confirm('Confirm delete?');
 
         if (dltConfirmation === true) {
-            fetch(`http://localhost:5000/doctors/${email}`, {
+            fetch(`https://doc-plus-server.herokuapp.com/doctors/${email}`, {
                 method: "DELETE",
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`

@@ -33,7 +33,7 @@ const AddDoctor = () => {
                         img: img
                     }
                     // send to your database 
-                    fetch('http://localhost:5000/doctor', {
+                    fetch('https://doc-plus-server.herokuapp.com/doctor', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

@@ -7,6 +7,7 @@ import Dashboard from './Components/Pages/Dashboard/Dashboard';
 import ManageDoctors from './Components/Pages/Dashboard/ManageDoctors';
 import MyAppointments from './Components/Pages/Dashboard/MyAppointments';
 import MyReview from './Components/Pages/Dashboard/MyReview';
+import Payment from './Components/Pages/Dashboard/Payment';
 import Users from './Components/Pages/Dashboard/Users';
 import Header from './Components/Pages/Header/Header';
 import Home from './Components/Pages/Home/Home';
@@ -32,6 +33,7 @@ function App() {
         }>
           <Route index element={<MyAppointments></MyAppointments>}></Route>
           <Route path='myreview' element={<MyReview/>}></Route>
+          <Route path='payment/:id' element={<Payment/>}></Route>
           <Route path='users' element={<Users/>}></Route>
           <Route path='addDoctor' element={<AddDoctor/>}></Route>
           <Route path='manageDoctors' element={<ManageDoctors/>}></Route>
